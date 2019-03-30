@@ -1,14 +1,43 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  
+   <ion-list inset>
+  <form>
+
+      <h1>Polleria</h1>
+
+      <h4>Detalle de Ventas</h4>
+
+      <div style='heigh:20px;'></div>
+
+   
+        <ion-list >
+          <label color='light'>Usuario</label>
+          <ion-item>
+            <ion-input name="username" id="loginField" type="text" required [(ngModel)] = "usuario"></ion-input>
+          </ion-item>
+
+          
+          <div style='height: 20px'></div>
+
+          <label color='light'>Clave</label>
+          <ion-item>
+            <ion-input name="password" id="passwordField" type="password" required [(ngModel)] = "clave"></ion-input>
+          </ion-item>
+        </ion-list>
+    
+
+
+
+
+
+        <button  round ion-button  color='dark' full type="button" [navPush]="pushPage" >Ingresar
+        </button>
+   
+  </form>
+
+
+          
+      </ion-list>
 </ion-content>

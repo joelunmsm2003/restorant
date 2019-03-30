@@ -15,6 +15,8 @@ $app-direction: ltr;
 @import "ionic.globals";
 
 
+
+
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
@@ -86,3 +88,12 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+
+.picker-md .picker-wrapper {
+    height: 260px;
+    border-top: 0.55px solid #dedede;
+    background: #fff;
+    font-family: 'Lato';
+}
+
