@@ -3,4 +3,48 @@ page-detallesucursal {
 
 	font-family: 'Lato', sans-serif;
 
+
+
+.datetime-text{
+
+		color:#fff;
+}
+
+ion-label{
+
+	width: 83%;
+    position: absolute;
+}
+
+.grid{
+
+
+padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+
+
+
+.selec{
+
+	background: #ff8248;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.label-md {
+    margin: 10px 2em 1em 1em;
+    text-align: center;
+}
+
+.item-md.item-block .item-inner {
+    padding-right: 8px;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 10px;
+}
+
+
 }

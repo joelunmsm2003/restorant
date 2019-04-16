@@ -5,55 +5,242 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color='primary'>
+  <ion-navbar color='dark'>
     <ion-title>Informe de Resumen de Ventas</ion-title>
+
+    <ion-icon name="log-out" style='position: absolute;
+    right: 11px;
+    bottom: 14px;
+    font-size: 31px;
+    color: #fff;' (click)='salir()'></ion-icon>
   </ion-navbar>
+
+
 </ion-header>
 
-<ion-content padding>
+<ion-content >
 
 
 
     
 
 
-<ion-grid>
+
 
   <ion-row style='text-align:center;'>
 
+
+<ion-col class='filtro'>
       <ion-item>
-  <ion-label>Fecha</ion-label>
-  <ion-datetime displayFormat="YYYY / MM / DD" pickerFormat="YYYY MM DD" [(ngModel)]="fecha"></ion-datetime>
+  <ion-label>Año</ion-label>
+  <ion-datetime  cancelText='Cerrar' doneText='Aplicar'  displayFormat="YYYY" pickerFormat="YYYY" [(ngModel)]="anio" ></ion-datetime>
 </ion-item>
-      
+
+
+</ion-col>
+
+
+<ion-col class='filtro'>
+
+
+
+
+  <ion-item>
+    <ion-label>Mes</ion-label>
+    <ion-select [(ngModel)]="mesx" (cancel)='clearmes()'>
+      <ion-option *ngFor="let d of meses" [value]="d">{{d.nombre}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+
+</ion-col>
+
+
+
+<ion-col class='filtro'>
+
+
+  <ion-item>
+    <ion-label>Dia</ion-label>
+    <ion-select [(ngModel)]="diax" (cancel)='cleardia()'>
+      <ion-option *ngFor="let d of dias" [value]="d">{{d.nombre}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+</ion-col>
+
+
+
+
     </ion-row>
 
-  <ion-row>
-  
-    <ion-col *ngFor="let s of sucursal">
-      
-          <ion-row><ion-col></ion-col><ion-col><button ion-button round (click)='irasucursal(s)'>{{s.sucursal}}</button></ion-col></ion-row>
 
-          <ion-row *ngFor="let td of s._tipodelivery">
 
-          <ion-col>{{td.tipodelivery}}</ion-col><ion-col>{{td.monto}}</ion-col>
 
+<!--<ion-item *ngIf='mesx.nombre' >{{anio}} <span *ngIf='mesx'>{{mesx.nombre}} </span> <span *ngIf='diax'>{{diax.nombre}}</span> </ion-item>-->
+<ion-row >
+     <ion-col><button ion-button round color='dark' (click)='filtrar(anio,mesx,diax)'>Filtrar</button></ion-col></ion-row>
+
+<ion-grid padding>
+<ion-row>
+
+    <ion-col>
+    </ion-col>
+    <ion-col >
+          
+          <ion-row>
+              <ion-col style='text-align:right;' *ngFor="let s of sucursal" >
+
+                <span  class='sucursal' (click)='irasucursal(s)'>{{s.sucursal}}</span>
+
+              </ion-col>
           </ion-row>
-
-           <ion-row *ngFor="let tp of s._tipopago">
-
-          <ion-col>{{tp.tipopago}}</ion-col><ion-col>{{tp.monto}}</ion-col>
-
-          </ion-row>
-
-          <ion-row *ngFor="let t of s._tipopedido">
-
-          <ion-col>{{t.tipopedido}}</ion-col><ion-col>{{t.monto}}</ion-col>
-
-          </ion-row>
-
 
     </ion-col>
+
+</ion-row>
+
+</ion-grid>
+
+
+<ion-grid padding>
+
+  
+<ion-row    style='margin-top: -8px;' >
+  <ion-col>
+      <ion-row><ion-col style='padding-top: 10px;'>VENTA TOTAL</ion-col></ion-row>
+      
+
+  </ion-col>
+  <ion-col>
+      <ion-row style='padding-top: 7px;'>
+
+          <ion-col  *ngFor="let s of sucursal" style='text-align: center;'>
+
+            <ion-row *ngFor="let to of s._total">
+
+              
+
+              <ion-col  style='text-align:right;'>S/. {{to.monto.toLocaleString()}}</ion-col>
+
+              </ion-row>
+            
+
+          </ion-col>
+
+
+
+      </ion-row>
+  </ion-col>
+</ion-row>
+
+
+<ion-row><ion-col class='titulo'>Tipo Delivery</ion-col></ion-row>
+
+  
+<ion-row >
+
+  <ion-col style='padding-top: 10px;'>
+
+             <ion-row><ion-col>NO DELIVERY</ion-col></ion-row>
+             <ion-row><ion-col>DELIVERY DIRECTO</ion-col></ion-row>
+             <ion-row><ion-col>LIMA DELIVERY</ion-col></ion-row>
+             <ion-row><ion-col>DELIVERY UBER</ion-col></ion-row>
+
+  </ion-col>
+  <ion-col>
+          <ion-row>
+
+              <ion-col *ngFor="let s of sucursal" style='text-align: center;'>
+
+                <ion-row *ngFor="let to of let td of s._tipodelivery">
+
+                  <ion-col style='text-align:right;'>S/. {{to.monto.toLocaleString(undefined, {minimumFractionDigits: 2})}}</ion-col>
+
+                </ion-row>
+                
+
+              </ion-col>
+
+          </ion-row>
+
+    </ion-col>
+
+</ion-row>
+
+
+
+<ion-row><ion-col class='titulo'>Tipo Pago</ion-col></ion-row>
+
+
+<ion-row>
+
+      <ion-col style='padding-top: 10px;'>
+
+             <ion-row><ion-col>EFECTIVO</ion-col></ion-row>
+             <ion-row><ion-col>TARJETA</ion-col></ion-row>
+             <ion-row><ion-col>PAGO MIXTO (E y T)</ion-col></ion-row>
+             <ion-row><ion-col>MONEDA EXTRANJERA</ion-col></ion-row>
+
+
+      </ion-col>
+
+      <ion-col>
+            <ion-row>
+
+                <ion-col *ngFor="let s of sucursal" style='text-align: center;'>
+
+                  <ion-row *ngFor="let tp of s._tipopago">
+
+                    
+                    <ion-col  style='text-align:right;'>S/. {{tp.monto.toLocaleString(undefined, {minimumFractionDigits: 2})}}</ion-col>
+
+                  </ion-row>
+                  
+
+                </ion-col>
+
+            </ion-row>
+      </ion-col>
+
+</ion-row>
+
+
+
+
+<ion-row><ion-col class='titulo'>Tipo Pedido</ion-col></ion-row>
+
+
+
+  <ion-row>
+
+      <ion-col style='padding-top: 10px;'>
+
+             <ion-row><ion-col>LLEVAR</ion-col></ion-row>
+             <ion-row><ion-col>MESA</ion-col></ion-row>
+             <ion-row><ion-col>DELIVERY</ion-col></ion-row>
+             
+
+
+      </ion-col>
+      <ion-col>
+          <ion-row>
+
+              <ion-col *ngFor="let s of sucursal" style='text-align: center;'>
+
+                    <ion-row *ngFor="let t of s._tipopedido">
+
+                      <ion-col  style='text-align:right;'>S/. {{t.monto.toLocaleString(undefined, {minimumFractionDigits: 2})}}</ion-col>
+
+                     
+
+                    </ion-row>
+
+
+              </ion-col>
+
+          </ion-row>
+      </ion-col>
 
   </ion-row>
 

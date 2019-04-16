@@ -10,7 +10,7 @@ import { VentasPage } from '../pages/ventas/ventas';
 import { DetallesucursalPage } from '../pages/detallesucursal/detallesucursal';
 import { HttpClientModule,HttpClient } from '@angular/common/http'; 
 import { Http, RequestOptions, HttpModule } from '@angular/http';
-
+import {IonicStorageModule} from '@ionic/storage';
 
 
 @NgModule({
@@ -23,6 +23,8 @@ import { Http, RequestOptions, HttpModule } from '@angular/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+    }),
     HttpModule,
     HttpClientModule,
   ],

@@ -1,38 +1,43 @@
 
 
-<ion-content padding>
+<ion-content padding class='fondo'>
   
-   <ion-list inset>
-  <form>
+   <ion-list inset class='formlist'>
+  <form >
 
-      <h1>Polleria</h1>
+  
+      
+      <img style='max-width:15em;' src="http://rijoshbrasa.pe/wp-content/uploads/2016/12/logo.png">
 
-      <h4>Detalle de Ventas</h4>
+     
 
-      <div style='heigh:20px;'></div>
+      <div style='height:10px;'></div>
 
    
         <ion-list >
           <label color='light'>Usuario</label>
+          <div style='height:10px;'></div>
           <ion-item>
-            <ion-input name="username" id="loginField" type="text" required [(ngModel)] = "usuario"></ion-input>
+            <ion-input name="username" id="loginField" type="text" required [(ngModel)] = "user.nombre"></ion-input>
           </ion-item>
 
           
-          <div style='height: 20px'></div>
-
+ 
+          <div style='height:10px;'></div>
           <label color='light'>Clave</label>
+          <div style='height:10px;'></div>
+        
           <ion-item>
-            <ion-input name="password" id="passwordField" type="password" required [(ngModel)] = "clave"></ion-input>
+            <ion-input name="password" id="passwordField" type="password" required [(ngModel)] = "user.password"></ion-input>
           </ion-item>
         </ion-list>
     
 
+        <div style='height:10px;'></div>
 
 
 
-
-        <button  round ion-button  color='dark' full type="button" [navPush]="pushPage" >Ingresar
+        <button  round ion-button  color='dark' full type="button" (click)='login(user)' >Ingresar
         </button>
    
   </form>
