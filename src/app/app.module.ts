@@ -6,7 +6,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { MenuPage } from '../pages/menu/menu';
 import { VentasPage } from '../pages/ventas/ventas';
+import { ProductosPage } from '../pages/productos/productos';
+
 import { DetallesucursalPage } from '../pages/detallesucursal/detallesucursal';
 import { HttpClientModule,HttpClient } from '@angular/common/http'; 
 import { Http, RequestOptions, HttpModule } from '@angular/http';
@@ -18,6 +21,8 @@ import {IonicStorageModule} from '@ionic/storage';
     MyApp,
     HomePage,
     VentasPage,
+    MenuPage,
+    ProductosPage,
     DetallesucursalPage
   ],
   imports: [
@@ -33,6 +38,8 @@ import {IonicStorageModule} from '@ionic/storage';
     MyApp,
     HomePage,
     VentasPage,
+    MenuPage,
+    ProductosPage,
     DetallesucursalPage
 
   ],

@@ -1,0 +1,15 @@
+
+<ion-menu [content]="content">
+  <ion-header style='padding: 12px;'>
+      <img style='max-width:15em;' src="http://rijoshbrasa.pe/wp-content/uploads/2016/12/logo.png">
+
+  </ion-header>
+  <ion-content>
+    <div style='height: 0px;'></div>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">{{p.title}}</button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>

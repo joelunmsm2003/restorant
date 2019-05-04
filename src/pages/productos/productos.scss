@@ -1,0 +1,83 @@
+page-productos {
+
+ion-select {
+
+    max-width: 75% !important;
+}
+
+.label-md {
+    margin: 4px 6px 7px 0 !important;
+    max-width: 29px;
+        font-size: 14px;
+}
+
+.item-md {
+    padding-left: 0px;
+        padding-left: 6px !important;
+
+  }
+
+
+  .select-md {
+    padding: 13px 8px 13px 0px !important;
+        font-size: 14px;
+}
+.datetime-text {
+  font-size: 14px !important;
+}
+
+.grid{
+
+
+padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+
+font-family: 'Lato', sans-serif;
+
+.picker-col .picker-opts-left{
+
+	font-family: 'Lato', sans-serif !important;
+
+}
+
+.titulo{
+	    background: #9e5825;
+    color: #fff;
+    //border-radius: 16px;
+    padding: 6px;
+    padding-left: 12px;
+    opacity: .6;
+}
+
+.fondo{
+
+	background: #ff5709 !important;
+}
+
+.slide-zoom {
+    text-align: left;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+}
+.col{
+
+    font-size: 13px;
+}
+
+.sucursal{
+
+	background: #ff8248;
+    color: #fff;
+    padding: 7px;
+    border-radius: 5px;
+}
+.filtro .col{
+
+	padding: 0px !important;
+}
+
+
+
+}
