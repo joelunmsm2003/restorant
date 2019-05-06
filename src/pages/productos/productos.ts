@@ -20,6 +20,7 @@ export class ProductosPage {
   sucursal=[{'sucursal':'Sucursal 1'}]
   selectedCategories:any=[]
   itemsproductos:any=[]
+  listaproductos__:any=[]
   mesx:any;
   listaitems:any;
   anio:any;
@@ -72,6 +73,7 @@ export class ProductosPage {
       data => {
 
 
+
           this.listaitems=JSON.parse(data['_body'])
 
 
@@ -102,14 +104,14 @@ export class ProductosPage {
 
   filtraproducto(producto){
 
-  	var filtrado = this.listaproductos.filter(function(data){
+  	var filtrado = this.listaproductos__.filter(function(data){
 
           	return data.producto==producto
 
           })
 
 
-  	return filtrado
+  	return filtrado[0]
 
 
   }
@@ -122,27 +124,26 @@ export class ProductosPage {
       data => {
 
 
-          this.listaproductos=JSON.parse(data['_body'])
+
+
+          this.listaproductos__=JSON.parse(data['_body'])[1]['data']
 
           let _items = []
 
-          /*
+
           for (let j in this.itemsproductos ){
 
-          		
-
-          		console.log(this.filtraproducto(this.itemsproductos[j]))
 
           		_items.push(this.filtraproducto(this.itemsproductos[j]))
 
           }
+
+          console.log('items...',_items)
 	
 
-          this.listaproductos=_items*/
+          this.listaproductos=_items
           
-          console.log('ooo',this.filtraproducto('Promocion Brasa 1'))
-
-
+ 
       
       }),
 

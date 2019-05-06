@@ -65,10 +65,10 @@
 
 
 
-		<ion-row  *ngFor="let item of listaproductos">
-			<ion-col col-7>{{item.producto}}</ion-col>
-			<ion-col col-2>{{item.cantidad}}</ion-col>
-			<ion-col col-3>{{item.monto.toLocaleString(undefined, {minimumFractionDigits: 2})}}</ion-col>
+		<ion-row  *ngFor="let item of listaproductos" >
+			<ion-col *ngIf="item" col-7>{{item.producto}}</ion-col>
+			<ion-col *ngIf="item" col-2>{{item.cantidad}}</ion-col>
+			<ion-col *ngIf="item" col-3>{{item.monto.toLocaleString(undefined, {minimumFractionDigits: 2})}}</ion-col>
 
 		</ion-row>
 
