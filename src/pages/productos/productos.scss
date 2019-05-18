@@ -7,7 +7,7 @@ ion-select {
 
 .label-md {
     margin: 4px 6px 7px 0 !important;
-    max-width: 29px;
+ 
         font-size: 14px;
 }
 
@@ -15,6 +15,11 @@ ion-select {
     padding-left: 0px;
         padding-left: 6px !important;
 
+  }
+
+  .montos{
+
+    text-align: right;
   }
 
 
@@ -63,19 +68,43 @@ font-family: 'Lato', sans-serif;
 }
 .col{
 
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .sucursal{
 
 	background: #ff8248;
     color: #fff;
-    padding: 7px;
+
     border-radius: 5px;
 }
 .filtro .col{
 
 	padding: 0px !important;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 30% 15% 20% 15% 20%;
+ 
+
+}
+
+.grid-container_1 {
+  display: grid;
+  grid-template-columns: 30% 35% 35%;
+ 
+
+}
+
+
+.grid-item {
+    //border: 1px solid #f5f0ed;
+    font-size: 11px;
+    height: 35px;
+    padding-top: 6px;
+    padding-left: 3px;
+   
 }
 
 

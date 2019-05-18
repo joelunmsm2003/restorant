@@ -1,7 +1,9 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Nav, AlertController, Platform} from 'ionic-angular';
 import { VentasPage } from '../ventas/ventas';
 import { ProductosPage } from '../productos/productos';
+import { SlaPage } from '../sla/sla';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the MenuPage page.
@@ -24,10 +26,13 @@ export class MenuPage {
   pages: Array<{title: string, component: any}>;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public storage: Storage,public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,) {
 
   	 this.pages = [
+
+      { title: 'Ventas', component: VentasPage },
       { title: 'Productos', component: ProductosPage },
+      { title: 'SLA', component: SlaPage },
      
     ];
 
@@ -44,6 +49,32 @@ export class MenuPage {
     this.navCtrl.push(page.component);
   }
 
+ 
+
+   salir() {
+    const alert = this.alertCtrl.create({
+     
+      subTitle: 'Desea salir del sistema?',
+      buttons: [
+        {
+          text: 'No',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Si',
+          handler: data => {
+             this.storage.remove('logeado')
+
+
+             this.platform.exitApp();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
   
 
 

@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { MenuPage } from '../pages/menu/menu';
 import { VentasPage } from '../pages/ventas/ventas';
 import { ProductosPage } from '../pages/productos/productos';
+import { SlaPage } from '../pages/sla/sla';
 
 import { DetallesucursalPage } from '../pages/detallesucursal/detallesucursal';
 import { HttpClientModule,HttpClient } from '@angular/common/http'; 
@@ -23,7 +24,8 @@ import {IonicStorageModule} from '@ionic/storage';
     VentasPage,
     MenuPage,
     ProductosPage,
-    DetallesucursalPage
+    DetallesucursalPage,
+    SlaPage
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import {IonicStorageModule} from '@ionic/storage';
     VentasPage,
     MenuPage,
     ProductosPage,
+    SlaPage,
     DetallesucursalPage
 
   ],

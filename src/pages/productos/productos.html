@@ -33,43 +33,70 @@
 		</ion-row>
 
 
+
 		<ion-item >
-			<ion-label>Producto</ion-label>
-		<ion-select multiple="true" [(ngModel)]="itemsproductos" >
-		<ion-option *ngFor="let item of listaitems"  selected=true>{{item.producto}}</ion-option>
-		</ion-select>
-		</ion-item>
-
-		<div style='height:12px;'></div>
-
-		<button ion-button round (click)='filtrar(anio,mesx)' color='dark'>Filtrar</button>
+			<ion-label>Categoria</ion-label>
+			<ion-select  [(ngModel)]="itemscategoria" >
+	
+			<ion-option *ngFor="let item of categorias" value="{{item.categoria}}"  >{{item.categoria}}</ion-option>
+			</ion-select>
+			</ion-item>
 
 
+		
+			<!--<ion-item >
+			<ion-label>Categoria</ion-label>
+			<ion-select multiple="true" [(ngModel)]="itemsproductos" >
+		
+			<ion-option *ngFor="let item of listaitems" selected={{item.selecciona}} >{{item.producto}}</ion-option>
+			</ion-select>
+			</ion-item-->
+		
+     <div style="height: 20px;"></div>
+		<button ion-button round full (click)='filtrar(anio,mesx,selectsucursal)' color='dark'>Filtrar</button>
 
+		
 
 		<h4>Ranking de Productos</h4>
 
-		 <ion-row style='padding: 10px;'>
-		 	<ion-col col-7></ion-col>
-              <ion-col  *ngFor="let s of sucursal" >
-                <span  class='sucursal'>{{s.sucursal}}</span>
-              </ion-col>
-          </ion-row>
 
-         <ion-row class='titulo' >
-		 	<ion-col  col-7>Producto</ion-col>
-            <ion-col  col-2>Cant.</ion-col>
-            <ion-col  col-2>S/. Venta</ion-col>
-          </ion-row>
+		
+
+          <div style="height: 20px;"></div>
+
+<div class='grid-container_1'>
+
+<div class='grid-item'></div>
+<div class='grid-item' style='text-align: center;'>Sucursal 1</div>
+<div class='grid-item' style='text-align: center;'>Sucursal 2</div>
 
 
+</div>
 
 
-		<ion-row  *ngFor="let item of listaproductos" >
-			<ion-col *ngIf="item" col-7>{{item.producto}}</ion-col>
-			<ion-col *ngIf="item" col-2>{{item.cantidad}}</ion-col>
-			<ion-col *ngIf="item" col-3>{{item.monto.toLocaleString(undefined, {minimumFractionDigits: 2})}}</ion-col>
 
-		</ion-row>
+<div class='grid-container'>
+
+<div class='grid-item' style='text-align: center;'>Prod.</div>
+<div class='grid-item' style='text-align: right;'>Cant.</div>
+<div class='grid-item' style='text-align: right;'>S/. Vent</div>
+<div class='grid-item' style='text-align: right;'>Cant.</div>
+<div class='grid-item' style='text-align: right;'>S/. Vent</div>
+
+</div>
+
+		
+
+		<div class="grid-container" *ngFor="let item of productos">
+  <div class="grid-item" *ngIf="item.producto"> {{item.producto}} </div>
+   <div class="grid-item" style='text-align: right;' *ngIf="item.sucursal_1[0]"> {{item.sucursal_1[0].cantidad}} </div>
+   <div class="grid-item" style='text-align: right;' *ngIf="item.sucursal_1[0]"> {{item.sucursal_1[0].monto.toLocaleString(undefined, {minimumFractionDigits: 2})}} </div>
+
+   <div class="grid-item" style='text-align: right;' *ngIf="item.sucursal_2[0]"> {{item.sucursal_2[0].cantidad}} </div>
+   <div class="grid-item" style='text-align: right;' *ngIf="item.sucursal_2[0]"> {{item.sucursal_2[0].monto.toLocaleString(undefined, {minimumFractionDigits: 2})}} </div>
+ 
+</div>
+
+		<h4 *ngIf='productos?.length == 0' style='color:#5f4f47;'>No existe productos para el filtro</h4>
 
 </ion-content>

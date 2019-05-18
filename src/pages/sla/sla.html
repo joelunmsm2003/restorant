@@ -1,0 +1,69 @@
+<!--
+  Generated template for the SlaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color='dark'>
+    <ion-title>SLA</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+<ion-item padding>
+  <ion-label>Seleccione un dia</ion-label>
+  <ion-datetime cancelText='Cerrar' doneText='Aplicar' display-format="MMM DD, YYYY HH:mm"  [(ngModel)] = "fecha"  (ionChange)='cambia(fecha)'></ion-datetime>
+</ion-item>
+
+	
+	
+<!--<ion-slides>
+	  <ion-slide *ngFor='let item of sucursal' style='height:20px;'>
+	    <h1>{{item}}</h1>
+	  </ion-slide>
+</ion-slides>-->
+
+
+
+		<ion-row>
+		<ion-col col-4></ion-col>
+		<ion-col *ngIf='slas[0]' style='text-align: center;' ><h4>{{slas[0]?slas[0].sucursal:''}}</h4></ion-col>
+
+		<ion-col  *ngIf='slas[1]' style='text-align: center;'><h4>{{slas[1]?slas[1].sucursal:''}}</h4></ion-col>
+		
+		</ion-row>
+
+
+
+
+		<ion-row>
+		<ion-col col-4>Entregas <br> Delivery</ion-col>
+		<ion-col  *ngIf='slas[0]' class='sla'>{{slas[0]?slas[0].sla_entrega_delivery:0}}</ion-col>
+
+		<ion-col  *ngIf='slas[1]' class='sla'>{{slas[1]?slas[1].sla_entrega_delivery:0}}</ion-col>
+
+
+		</ion-row>
+
+
+		<div style='height:20px;'></div>
+		<ion-row>
+		<ion-col col-4>Satisfaccion al Cliente</ion-col>
+
+		<ion-col  *ngIf='slas[0]' class='sla'><span >{{slas[0]?slas[0].sla_encuesta:0}}</span></ion-col>
+
+
+		<ion-col  *ngIf='slas[1]' class='sla'><span >{{slas[1]?slas[1].sla_encuesta:0}}</span></ion-col>
+
+
+
+
+		</ion-row>
+
+		
+
+
+
+</ion-content>

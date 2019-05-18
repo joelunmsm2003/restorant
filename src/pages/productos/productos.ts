@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController,LoadingController } from 'ionic-angular';
 import { Http,RequestOptions, Headers } from '@angular/http';
 /**
  * Generated class for the ProductosPage page.
@@ -16,16 +16,23 @@ import { Http,RequestOptions, Headers } from '@angular/http';
 export class ProductosPage {
 
   listaproductos:any;
-
-  sucursal=[{'sucursal':'Sucursal 1'}]
+  itemscategoria:any;
+  clave:any=false
+  sucursal=[{'sucursal':'Sucursal 1','id':1},{'sucursal':'Sucursal 2','id':2}]
   selectedCategories:any=[]
   itemsproductos:any=[]
   listaproductos__:any=[]
   mesx:any;
+  selectsucursal:any;
   listaitems:any;
   anio:any;
+  categorias:any;
+  categoria:any;
+  productos:any;
+  estado:any;
+  loader:any;
   meses:any=[
-      {'nombre':'Todos','id':0},
+     
       {'nombre':'Enero','id':1},
       {'nombre':'Febrero','id':2},
       {'nombre':'Marzo','id':3},
@@ -44,18 +51,87 @@ export class ProductosPage {
 
 
 
-  constructor(public http: Http,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public loadingCtrl: LoadingController,public http: Http,public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
 
+
+  }
+
+
+   presentLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Cargando Productos..."
+    });
+    this.loader.present();
+  }
+
+
+
+  selecciona(data){
+
+
+
+      if(this.clave){
+
+          for(let i in  this.listaitems){
+
+             this.listaitems[i]['selecciona']=false
+          }
+
+          
+
+
+      }
+      else{
+
+          for(let i in  this.listaitems){
+
+             this.listaitems[i]['selecciona']=true
+          }
+
+          
+
+      }
+
+      this.clave=!this.clave
+   
+
+      
+
+      console.log('hahahah',this.listaitems)
 
   }
 
   ionViewDidLoad() {
 
 
+    this.http.get('http://xiencias.com:4444/categoria')
+     .subscribe(
+      data => {
+
+
+
+          this.categorias=JSON.parse(data['_body'])
+
+
+      
+      }),
+
+      error => {
+
+      }
+
+
+
+this.selectsucursal=1
+
+this.estado=true
+
+
+
   	  	  	let fecha = new Date()
 
 
-  	this.mesx=this.meses[fecha.getMonth()+1]
+  	this.mesx=this.meses[fecha.getMonth()]
 
   	console.log(this.mesx)
 
@@ -66,7 +142,7 @@ export class ProductosPage {
   	console.log(fecha.getFullYear())
 
 
-  		this.filtrafechas('2018',this.mesx.nombre)
+  		this.filtrafechas('2019',this.mesx.nombre,1)
 
   		this.http.get('http://xiencias.com:4444/listaproductos/')
      .subscribe(
@@ -79,14 +155,21 @@ export class ProductosPage {
 
           for(let i in this.listaitems){
 
+               this.listaitems[i]['selecciona']=false
+            }
+
+          
+
+           
+
+          for(let i in this.listaitems){
+
           	this.itemsproductos.push(this.listaitems[i]['producto'])
 
           }
 
 
-
-   
-
+          
 
       
       }),
@@ -102,22 +185,28 @@ export class ProductosPage {
   }
 
 
-  filtraproducto(producto){
 
-  	var filtrado = this.listaproductos__.filter(function(data){
 
-          	return data.producto==producto
+  filtracategoria(producto){
+
+  	var filtrado = this.productos.filter(function(data){
+
+          	return data.categoria==producto
 
           })
 
 
-  	return filtrado[0]
+    console.log('Filtrado...',filtrado)
+  	return filtrado
 
 
   }
 
 
-  filtrafechas(anio,mes){
+  filtrafechas(anio,mes,sucursal){
+
+
+    this.presentLoading()
 
   	 this.http.get('http://xiencias.com:4444/productos/'+anio+'/'+mes)
      .subscribe(
@@ -125,23 +214,32 @@ export class ProductosPage {
 
 
 
+          console.log('DTA Cragada.',JSON.parse(data['_body']))
 
-          this.listaproductos__=JSON.parse(data['_body'])[1]['data']
+
+          this.loader.dismiss()
+
+
+          this.productos=JSON.parse(data['_body'])
 
           let _items = []
 
 
-          for (let j in this.itemsproductos ){
+          this.productos=this.filtracategoria(this.itemscategoria)
 
 
-          		_items.push(this.filtraproducto(this.itemsproductos[j]))
+          if(this.itemscategoria==undefined){
+
+              this.productos=JSON.parse(data['_body'])
 
           }
+ 
 
-          console.log('items...',_items)
-	
+          
 
-          this.listaproductos=_items
+
+
+          console.log('Lista de Productos...',this.productos)
           
  
       
@@ -154,7 +252,7 @@ export class ProductosPage {
 
 
 
-    filtrar(anio,mes){
+    filtrar(anio,mes,selectsucursal){
 
 
      console.log('aniohahahahah',this.itemsproductos)
@@ -165,7 +263,7 @@ export class ProductosPage {
      console.log('mes',mes)
 
 
-     this.filtrafechas(anio,mes.nombre)
+     this.filtrafechas(anio,mes.nombre,selectsucursal)
 
 
 
